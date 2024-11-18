@@ -10,4 +10,3 @@ class CustomUser(AbstractUser):
         return self.email
 
 
-# Create your models here.

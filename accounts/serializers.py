@@ -25,6 +25,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Passwords do not match")
         return attrs
 
+    def validate_username(self, attrs):
+        if len(attrs) < 8:
+            raise serializers.ValidationError("username is too short")
+        return attrs
+
     def create(self, validated_data):
         password = validated_data.pop('password1')
         validated_data.pop('password2')

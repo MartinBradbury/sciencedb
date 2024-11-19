@@ -16,6 +16,7 @@ class UserRegistrationAPIView(GenericAPIView):
         user = serializer.save()
         token = RefreshToken.for_user(user)
         data = serializer.data
+        # noinspection PyUnresolvedReferences
         data['token'] = {"refresh": str(token), "access": str(token.access_token)}
         return Response(data, status=status.HTTP_201_CREATED)
 
@@ -29,6 +30,7 @@ class UserLoginAPIView(GenericAPIView):
         serializer = CustomUserSerializer(user)
         token = RefreshToken.for_user(user)
         data = serializer.data
+        # noinspection PyUnresolvedReferences
         data['token'] = {"refresh": str(token),
                          "access" : str(token.access_token)}
         return Response(data, status=status.HTTP_200_OK)
